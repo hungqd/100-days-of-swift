@@ -10,9 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    private var pictures = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let fm = FileManager.default
+        if let path = Bundle.main.resourcePath {
+            if let items = try? fm.contentsOfDirectory(atPath: path) {
+                pictures += items.filter({ $0.hasPrefix("nssl") })
+                print(pictures)
+            }
+        }
     }
 
 
