@@ -19,7 +19,7 @@ class ViewController: UITableViewController {
         let fm = FileManager.default
         if let path = Bundle.main.resourcePath {
             if let items = try? fm.contentsOfDirectory(atPath: path) {
-                pictures += items.filter({ $0.hasPrefix("nssl") })
+                pictures += items.filter({ $0.hasPrefix("nssl") }).sorted()
                 print(pictures)
             }
         }
@@ -38,6 +38,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let detailVC = storyboard?.instantiateViewController(identifier: "Detail") as? DetailViewController {
             detailVC.selectedImage = pictures[indexPath.row]
+            detailVC.displayName = "Picture \(indexPath.row + 1) of \(pictures.count)"
             navigationController?.pushViewController(detailVC, animated: true)
         }
     }
