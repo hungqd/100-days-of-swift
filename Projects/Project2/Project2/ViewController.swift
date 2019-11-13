@@ -41,5 +41,19 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
     }
+
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        var title = ""
+        if sender.tag == correctAnswer {
+            title = "Correct"
+            score += 1
+        } else {
+            title = "Wrong"
+            score -= 1
+        }
+        let ac = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Continue", style: .default, handler: { _ in self.askQuestion() }))
+        present(ac, animated: true)
+    }
 }
 

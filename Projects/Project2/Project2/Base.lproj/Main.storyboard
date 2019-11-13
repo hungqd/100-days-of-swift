@@ -25,22 +25,31 @@
                                             <constraint firstAttribute="height" constant="100" id="iGE-UD-teK"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yn0-J0-SnS"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srg-u1-Qaf">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srg-u1-Qaf">
                                         <rect key="frame" x="107" y="120" width="200" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="V4A-N6-40u"/>
                                             <constraint firstAttribute="width" constant="200" id="jcY-Ce-XaC"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1GW-H1-Tat"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAq-6L-4wk">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAq-6L-4wk">
                                         <rect key="frame" x="107" y="240" width="200" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="o5U-Zl-cks"/>
                                             <constraint firstAttribute="width" constant="200" id="yLU-4K-h4b"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="us"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EuQ-iE-Laa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
