@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let detailItem = detailItem else { return }
+        title = detailItem.title
         let html = """
         <html>
         <head>
