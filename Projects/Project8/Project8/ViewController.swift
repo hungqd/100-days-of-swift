@@ -24,7 +24,9 @@ class ViewController: UIViewController {
             scoreLabel.text = "Score: \(score)"
         }
     }
+
     var level = 1
+    var remainingQuestions = 0
 
     func loadLevel() {
         var clueString = ""
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
             if let levelContents = try? String(contentsOf: levelFileUrl) {
                 var lines = levelContents.components(separatedBy: "\n")
                 lines.shuffle()
+
+                remainingQuestions = lines.count
 
                 for (index, line) in lines.enumerated() {
                     let parts = line.components(separatedBy: ": ")
@@ -147,6 +151,8 @@ class ViewController: UIViewController {
                 let frame = CGRect(x: col * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
                 buttonsView.addSubview(letterButton)
+                letterButton.layer.borderWidth = 1
+                letterButton.layer.borderColor = UIColor.lightGray.cgColor
                 letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside)
                 letterButtons.append(letterButton)
             }
@@ -178,12 +184,18 @@ class ViewController: UIViewController {
 
             currentAnswer.text = ""
             score += 1
+            remainingQuestions -= 1
 
-            if score % 7 == 0 {
+            if remainingQuestions == 0 {
                 let ac = UIAlertController(title: "Well done!", message: "Are you ready for the next level?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            score -= 1
+            let alert = UIAlertController.init(title: "You are wrong!", message: "Please try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true)
         }
     }
 
