@@ -18,9 +18,14 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         let fm = FileManager.default
         if let path = Bundle.main.resourcePath {
-            if let items = try? fm.contentsOfDirectory(atPath: path) {
-                pictures += items.filter({ $0.hasPrefix("nssl") }).sorted()
-                print(pictures)
+            DispatchQueue.global(qos: .background).async {
+                if let items = try? fm.contentsOfDirectory(atPath: path) {
+                    self.pictures += items.filter({ $0.hasPrefix("nssl") }).sorted()
+                    print(self.pictures)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
             }
         }
     }

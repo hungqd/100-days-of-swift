@@ -11,14 +11,20 @@ import UIKit
 extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         print("\(#function): \(searchController.searchBar.text ?? "Empty")")
-        if let query = searchController.searchBar.text, !query.isEmpty {
-            filteredPetitions = petitions.filter({ (petition) -> Bool in
-                return petition.title.contains(query)
-            })
-        } else {
-            filteredPetitions = petitions
+        if let query = searchController.searchBar.text {
+            DispatchQueue.global(qos: .background).async {
+                if !query.isEmpty {
+                    self.filteredPetitions = self.petitions.filter({ (petition) -> Bool in
+                        return petition.title.contains(query)
+                    })
+                } else {
+                    self.filteredPetitions = self.petitions
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
-        tableView.reloadData()
     }
 }
 
